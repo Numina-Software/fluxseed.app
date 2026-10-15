@@ -13,5 +13,10 @@
     "nuxt": "^4.6.1",
     "vue": "^3.5.43",
     "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.30",
+    "pug": "^3.0.4",
+    "stylus": "^0.64.0"
   }
 }
