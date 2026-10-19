@@ -1,8 +1,11 @@
 <template lang="pug">
 header
   .wrapper
-    h1 FluxSeed
-    p Seed(s) you can trust.
+    router-link(to="/")
+      img.icon(src="/icon.png")
+      div
+        h1 FluxSeed
+        p Seeds forged in flux. Secured for life. Unbreakable by design.
 
 main
   .wrapper
@@ -32,3 +35,20 @@ footer
 <script setup lang="ts">
 const curYear = new Date().getFullYear()
 </script>
+
+<style lang="stylus">
+.icon
+  float left
+  width 96px
+  height 96px
+  border-radius 50px
+
+header
+  .wrapper
+    display flex
+    flex-flow row nowrap
+
+    > div
+      display flex
+      flex-flow column nowrap
+</style>
