@@ -14,6 +14,7 @@
   --text: #aaa
   --h: #fff
   --lgap: 64px
+  --sgap: 96px
 
   font: 15px/145% var(--sans);
   font-optical-sizing: auto
@@ -48,6 +49,7 @@ h2
 h3
   font-size 14px
 
+
 strong
   font-weight 700
 
@@ -68,16 +70,22 @@ button
 header
   padding 24px 0
 
+  a
+    text-decoration none
+    display flex
+    flex-flow row nowrap
+    align-items center
+    gap 32px
+    width 100%
+
   h1
     margin-bottom 8px
     font-weight 800 !important
     font-size 24px
 
-footer
-section
-  padding var(--lgap) 0
 
 section
+  padding var(--sgap) 0
   h2
     margin-top 0
     margin-left auto
@@ -105,11 +113,14 @@ section
       padding 0
       display flex
       flex-flow row wrap
-      gap 32px
+      gap var(--lgap)
 
       li
         padding 0
         flex 1 1 40%
+        display flex
+        flex-flow column nowrap
+        gap 24px
 
   &.how
     ol
@@ -123,16 +134,29 @@ section
 a
   color aliceblue
 
-header
-  a
-    text-decoration none
-    display flex
-    flex-flow row nowrap
-    gap 32px
-    width 100%
-
 footer
   font-size 13px
+  text-align: center
+  padding var(--lgap) 0
+
+  .links
+    list-style-type: none
+    padding 0
+    display flex
+    flex-flow row wrap
+    margin 32px 0
+    gap 24px
+
+    li
+      position relative
+      &:not(:last-child)
+        &:after
+          content '-'
+          position absolute
+          right -15px
+
+  ul
+    justify-content center
 
 h1
   &+p
