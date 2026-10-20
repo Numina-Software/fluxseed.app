@@ -13,6 +13,7 @@
   --bg: #000
   --text: #aaa
   --h: #fff
+  --lgap: 64px
 
   font: 15px/145% var(--sans);
   font-optical-sizing: auto
@@ -36,13 +37,13 @@ h1
 h2
 h3
 h4
-  font-weight 500
+  font-weight 300
   color var(--h)
   line-height 150%
+  margin 0
 
 h2
-  font-size 18px
-  margin-bottom 24px
+  font-size 26px
 
 h3
   font-size 14px
@@ -61,18 +62,42 @@ button
 
   &.cta
     margin-top 24px
+    padding 16px 24px
+    font-size 14px
 
 header
   padding 24px 0
 
   h1
     margin-bottom 8px
+    font-weight 800 !important
+    font-size 24px
+
+footer
+section
+  padding var(--lgap) 0
 
 section
-  padding 48px 0
-
   h2
     margin-top 0
+    margin-left auto
+    margin-right auto
+    text-align center
+
+  p
+    margin 0
+
+  &.hero
+    padding 96px 0
+    text-align center
+
+    h2
+      font-size 36px
+
+  &.care
+    ul
+      li
+        margin-bottom 16px
 
   &.features
     ul
@@ -112,4 +137,9 @@ footer
 h1
   &+p
     margin 0
+
+main
+  > section
+    &:nth-child(2n)
+      background-color rgba(indigo, .25)
 </style>

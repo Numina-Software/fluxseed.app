@@ -4,12 +4,11 @@ header
     router-link(to="/")
       img.icon(src="/icon.png")
       div
-        h1 FluxSeed
+        h1 FluxSeed#[sup ®] App
         p Seeds forged in flux. Secured for life. Unbreakable by design.
 
 main
-  .wrapper
-    slot
+  slot
 
 footer
   .wrapper
