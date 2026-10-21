@@ -1,6 +1,23 @@
 <script setup lang="ts">
 import sectiune from '../components/section.vue';
+import { ref } from 'vue'
 
+const testimonials = [{
+  by: {
+    name: 'Early user',
+    avatar: null,
+  },
+  message: 'Finally a seed generator that feels as serious as the funds it protects.',
+  review: 5
+}, {
+  by: {
+    name: 'Security-conscious adopter'
+  },
+  message: 'Clean, fast, and the security messaging actually matches the product.',
+  review: 4.5
+}]
+
+const activeTesti = ref(0)
 </script>
 
 <template lang="pug">
@@ -65,17 +82,31 @@ sectiune.testimonials
   h2 Trusted by people who refuse to take chances with their assets.
 
   ul
-    li
-      blockquote “Finally a seed generator that feels as serious as the funds it protects.”
+    li(v-for="t,i in testimonials" :class="{ active: activeTesti === i }")
+      blockquote
+        .stars(:style="`--rating: ${ t.review }; --star-fill-color: #0affc1; --star-gap: 4px; --star-size: 1.5rem;`" :aria-label="`Rating of this product is ${ t.review } out of 5`")
+        p {{ t.message }}
       p
-        cite Early user
+        span.avatar
+          img(v-if="t.by.avatar" :src="t.by.avatar")
+        cite {{ t.by.name }}
+      
+  nav
+    button.prev(
+      @click= "activeTesti -= 1"
+      :disabled=  "!activeTesti"
+    ) Previous
+    button.dot(
+      v-for=  "t, i in testimonials"
+      :disabled="activeTesti === i"
+      @click= "activeTesti = i"
+    ) {{ i }}
+    button.next(
+      :disabled="activeTesti === testimonials.length - 1"
+      @click= "activeTesti += 1"
+    ) Next
 
-    li
-      blockquote “Clean, fast, and the security messaging actually matches the product.”
-      p
-        cite Security-conscious adopter
-
-sectiune
+sectiune.fcta
   h2 Unlimited seeds. Zero compromise.
   p Stop relying on average generators.
   p Start with FluxSeed and give your digital wallet the impregnable foundation it deserves.
@@ -83,6 +114,35 @@ sectiune
 </template>
 
 <style lang="stylus">
+.stars
+  --rating: 0;
+  --max-rating: 5;
+  --star-color: #fc0;
+  --star-empty-color: transparent;
+  --star-gap: 3px;
+  --percent: calc(((var(--rating) / var(--max-rating)) * 100%));
+  display: inline-block;
+  font-size: var(--star-size, 1.175rem);
+  font-family: Times;
+  line-height: 1;
+  
+  &:before
+    content: "★★★★★";
+    --star-gap-half: calc(var(--star-gap) / 2);
+    --star-perc: calc(var(--percent) - var(--star-gap-half));
+    background: linear-gradient(
+      90deg,
+      var(--star-color) var(--star-perc),
+      var(--star-empty-color) var(--star-perc)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: var(--star-color);
+    letter-spacing: var(--star-gap);
+    line-height: 0;
+
+
 .features
   ul
     li
@@ -90,11 +150,11 @@ sectiune
         &:before
           content ' '
           display block
-          width 36px
-          height 36px
+          width 24px
+          height 30px
           margin-right 8px
           margin-bottom 16px
-          background-size auto 80%
+          background-size 24px 24px
           background-repeat no-repeat
           background-position 50% 50%
 

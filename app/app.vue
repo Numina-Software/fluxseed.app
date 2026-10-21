@@ -29,6 +29,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+body
+  margin 0
+  padding 0
+  box-sizing: border-box
+
+  *
+    box-sizing: border-box
+
+#app
+  position relative
+
 .wrapper
   max-width 800px
   margin 0 auto
@@ -67,6 +78,11 @@ button
     padding 16px 24px
     font-size 14px
 
+  &:disabled
+    border-color rgba(white, .1)
+    cursor default
+    pointer-events: none
+
 header
   padding 24px 0
 
@@ -86,6 +102,7 @@ header
 
 section
   padding var(--sgap) 0
+  
   h2
     margin-top 0
     margin-left auto
@@ -94,6 +111,61 @@ section
 
   p
     margin 0
+
+  &.testimonials
+    nav
+      display flex
+      flex-flow row nowrap
+      align-items: center
+      gap 16px
+
+      button
+        font-size 0
+
+        &:after
+        &:before
+          font-size 12px
+
+        &.dot
+          width 8px
+          height 8px
+          padding 0
+          border-radius 8px
+
+      button
+        &.next
+          &:after
+            content '>'
+        &.prev
+          &:before
+            content '<'
+
+    ul
+      list-style-type: none
+      padding 0
+      position relative
+      width 100%
+      height 280px
+      overflow-x: hidden
+      overflow-y visible
+
+      li
+        position absolute
+        width 100%
+        top 0
+        transition transform .15s ease
+        padding 0
+        transform translateX(-100%)
+        display flex
+        flex-flow column nowrap
+        align-items: flex-end
+        gap 32px
+
+        &.active
+          transform translateX(0)
+
+        blockquote
+          width 100%
 
   &.hero
     padding 96px 0
@@ -104,8 +176,14 @@ section
 
   &.care
     ul
+      list-style-type disclosure-closed
       li
         margin-bottom 16px
+        padding-left 12px
+
+  &.fcta
+    p
+      text-align: center
 
   &.features
     ul
@@ -126,10 +204,19 @@ section
     ol
       display flex
       flex-flow row wrap
-      gap 32px
+      gap 64px
+      padding 0
+      list-style-position: outside
+      // list-style-type: none
 
       li
         flex 1 1 30%
+        position relative
+
+        &::marker
+          display block
+          position absolute
+          bottom 100%
 
 a
   color aliceblue
@@ -166,4 +253,36 @@ main
   > section
     &:nth-child(2n)
       background-color rgba(indigo, .25)
+
+blockquote
+  padding 32px 48px 32px 64px
+  border none
+  background rgba(white, .1)
+  border-radius 20px
+  margin 0
+  position relative
+  display flex
+  flex-flow column nowrap
+  gap 24px
+  color var(--h)
+
+  &:before
+    content '"'
+    position absolute
+    top 24px
+    left 8px
+    font-size 64px
+    opacity .2
+
+  &+p
+    display flex
+    flex-flow row nowrap
+    align-items center
+    gap 8px
+
+.avatar
+  border-radius 50px
+  background rgba(white, .25)
+  width 48px
+  height 48px
 </style>
